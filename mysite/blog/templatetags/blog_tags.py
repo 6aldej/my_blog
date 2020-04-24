@@ -1,0 +1,46 @@
+from django import template
+from ..models import Post
+from django.db.models import Count
+from django.utils.safestring import mark_safe
+import markdown
+
+
+register = template.Library()
+
+
+@register.simple_tag
+def total_posts():
+    return Post.published.count()
+
+
+@register.inclusion_tag('blog/post/latest_posts.html')
+def show_latest_posts(count=5):
+    latest_posts = Post.published.order_by('-publish')[:count]
+    return {'latest_posts': latest_posts}
+
+
+@register.simple_tag
+def get_most_commented_posts(count=5):
+    return Post.published.annotate(
+               total_comments=Count('comments')
+           ).order_by('-total_comments')[:count]
+
+
+@register.filter(name='markdown')
+def markdown_format(text):
+    return mark_safe(markdown.markdown(text))
+
+@register.filter
+def rupluralize(value, arg="письмо,письма,писем"):
+    number = abs(int(value))
+    args = arg.split(",")
+        
+    a = number % 10
+    b = number % 100
+
+    if (a==1) and (b != 11):
+        return args[0]
+    elif (a >=2 ) and (a <=4 ) and ((b < 10) or (b >=20)):
+        return args[1]
+    else:
+        return args[2]

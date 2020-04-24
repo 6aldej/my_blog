@@ -1,0 +1,120 @@
+@font-face {
+    font-family: "Philosopher-Regular"; /* Имя шрифта */
+    src: url(../fonts/Philosopher-Regular.ttf); /* Путь к файлу со шрифтом */
+   }
+
+@font-face {
+    font-family: "Philosopher-Bold"; /* Имя шрифта */
+    src: url(../fonts/Philosopher-Bold.ttf); /* Путь к файлу со шрифтом */
+   }
+   @font-face {
+    font-family: "Philosopher-Italic"; /* Имя шрифта */
+    src: url(../fonts/Philosopher-Italic.ttf); /* Путь к файлу со шрифтом */
+   }
+
+body {
+    margin-top: 2vw;
+    background-color: #21335d;
+    font-family: "Philosopher-Regular";
+}
+
+a { 
+    color:#21335d;
+}
+
+h1 { 
+
+    font-family: "Philosopher-Bold";
+    border-bottom:4px solid #21335d;
+}
+
+h2 {
+    font-weight:normal;
+    margin:30px 0 0;
+
+}
+
+h3 {
+    font-weight:normal;
+    font-size: 25px;
+}
+
+#content {
+    background-color: #d6e2ff;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    border-radius: 10px;
+}
+
+#sidebar { 
+    background:#adc6ff; 
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    border-radius: 10px;
+}
+
+#search {
+    border-radius: 20px;
+}
+
+p.date { 
+    color: #134e6f;
+    font-family: "Philosopher-Italic";
+    font-size: 14px;
+    font-style: italic; 
+}
+
+/* pagination */
+.pagination { 
+    margin:40px 0; 
+    font-weight:bold;
+}
+
+/* forms */
+label { 
+    float:left;
+    clear:both;
+    color:#333;
+    margin-bottom:4px; 
+}
+input, textarea { 
+    clear:both;
+    float:left;
+    background:#adc6ff;
+    border:0;
+    font-size:30px;
+}
+input[type=submit] {
+    font-weight:bold;
+    background:#21335d;
+    color:#adc6ff;
+    font-size:20px;
+    border-radius: 40px;
+    margin-left: 20px;
+
+}
+.errorlist { 
+    color:#cc0033;
+    float:left;
+    clear:both;
+    padding-left:10px; 
+}
+
+/* comments */
+.comment {
+    padding:10px;
+    border-style: solid;
+    border-width: 0.5px;
+}
+.comment:nth-child(even) {
+    background:#adc6ff;
+}
+.comment .info {
+    font-weight:bold;
+    font-size:12px;
+    color: #21335d;
+}
+
+#bloglogo {
+
+    width: 14vw;
+    height: 14vw;
+}

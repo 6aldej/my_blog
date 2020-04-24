@@ -1,0 +1,33 @@
+{% extends "blog/base.html" %}
+{% load blog_tags %}
+{% load static %}
+
+{% block title %}Search{% endblock %}
+
+{% block content %}
+  {% if query %}
+    <h1>Пост содержащий "{{ query }}"</h1>
+    <h3>
+      {% with results.count as total_results %}
+         {{total_results|rupluralize:"Найден,Найдено,Найдено"}} {{ total_results }} {{total_results|rupluralize:"пост,поста,постов"}}
+      {% endwith %}
+    </h3>
+    {% for post in results %}
+        <h4><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
+        {{ post.body|truncatewords:5 }}
+    {% empty %}
+      <p>Нет резульатов по вашему запросу</p>
+      <img src={% static "img/sad.svg" %} class="mx-auto d-block" width="100" height="100" alt="search">
+    {% endfor %}
+    <p><a href="{% url "blog:post_search" %}">Повторить поиск</a></p>
+  {% else %}
+    <h1>Поиск по заголовкам</h1>
+    <img src={% static "img/zoom.svg" %} class="mx-auto d-block" width="100" height="100" alt="search">
+    <div class="d-flex justify-content-center">
+      <form class="form-inline" action="." method="get">
+        {{ form.as_p }}
+        <input type="submit" class="btn btn-primary" value="Поиск">
+      </form>
+    </div>
+  {% endif %}
+{% endblock %}
